@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "production":"pm2 start index.js --name knowledge-backend"
+    "production": "pm2 start index.js --name knowledge-backend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt-nodejs-as-promised": "1.0.4",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.19.0",
     "consign": "0.1.6",
     "cors": "2.8.5",
