@@ -20,7 +20,12 @@ module.exports = app => {
 
     const isNumberOrError = (value, msg) => {
         if(isNaN(value)) throw msg
+        if(value < 0) throw msg
     }
 
-    return { existsOrError, notExistsOrError, equalsOrError, isNumberOrError }
+    const lengthCorrectOrError = (value, msg, size) => {
+        if(value.length > size) throw msg
+    }
+
+    return { existsOrError, notExistsOrError, equalsOrError, isNumberOrError, lengthCorrectOrError }
 }
