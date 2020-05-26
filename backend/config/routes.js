@@ -1,25 +1,40 @@
 module.exports = app => {
-    app.route('/users')
-       .post(app.api.user.save)
-       .get(app.api.user.get)
+   //rotas para USERS 
+   app.route('/users')
+      .post(app.api.user.save)
+      .get(app.api.user.get)
     
-    app.route('/users/:id')
-       .put(app.api.user.save)
-       .get(app.api.user.getById)
-       .delete(app.api.user.remove)
+   app.route('/users/:id')
+      .put(app.api.user.save)
+      .get(app.api.user.getById)
+      .delete(app.api.user.remove)
 
-    app.route('/categories')
-       .get(app.api.category.get)
-       .post(app.api.category.save)
+   //rotas para CATEGORIES
+   app.route('/categories')
+      .get(app.api.category.get)
+      .post(app.api.category.save)
 
     //Cuidado com a ordem" Tem que vir antes do '/categories/:id
+   app.route('/categories/tree')
+      .get(app.api.category.getTree)
 
-    app.route('/categories/tree')
-       .get(app.api.category.getTree)
+   app.route('/categories/:id')
+      .get(app.api.category.getById)
+      .put(app.api.category.save)
+      .delete(app.api.category.remove)
 
-    app.route('/categories/:id')
-       .get(app.api.category.getById)
-       .put(app.api.category.save)
-       .delete(app.api.category.remove)
+   //rotas para ARTICLES
+   app.route('/articles')
+      .get(app.api.article.get)
+      .post(app.api.article.save)
+     
+   app.route('/articles/:id')
+      .get(app.api.article.getById)
+      .put(app.api.article.save)
+      .delete(app.api.article.remove)
+
+   app.route('/categories/:id/articles')
+      .get(app.api.article.getByCategoryId)
+      
    
 }
