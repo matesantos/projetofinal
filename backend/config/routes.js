@@ -1,4 +1,5 @@
 const admin = require('./admin')
+
 module.exports = app => {
    //rotas de autorização, únicos serviços que não preciram de 
    //de fazer a autenticação
@@ -50,6 +51,10 @@ module.exports = app => {
    app.route('/categories/:id/articles')
       .all(app.config.passport.authenticate())
       .get(app.api.article.getByCategoryId)
-      
+
+   //rotas para o stat(estíticas)
+   app.route('/stats')
+      .all(app.config.passport.authenticate())
+      .get(app.api.stat.get)
    
 }
