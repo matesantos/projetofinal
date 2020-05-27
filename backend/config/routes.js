@@ -1,39 +1,54 @@
+const admin = require('./admin')
 module.exports = app => {
+   //rotas de autorização, únicos serviços que não preciram de 
+   //de fazer a autenticação
+   app.post('/signup', app.api.user.save)
+   app.post('/signin', app.api.auth.signin)
+   app.post('/validateToken', app.api.auth.validateToken)
+
    //rotas para USERS 
    app.route('/users')
+      .all(app.config.passport.authenticate())
       .post(app.api.user.save)
-      .get(app.api.user.get)
+      .get(admin(app.api.user.get))
     
    app.route('/users/:id')
-      .put(app.api.user.save)
-      .get(app.api.user.getById)
-      .delete(app.api.user.remove)
+      .all(app.config.passport.authenticate())
+      .put(admin(app.api.user.save))
+      .get(admin(app.api.user.getById))
+      .delete(admin(app.api.user.remove))
 
    //rotas para CATEGORIES
    app.route('/categories')
-      .get(app.api.category.get)
-      .post(app.api.category.save)
+      .all(app.config.passport.authenticate())
+      .get(admin(app.api.category.get))
+      .post(admin(app.api.category.save))
 
     //Cuidado com a ordem" Tem que vir antes do '/categories/:id
    app.route('/categories/tree')
+      .all(app.config.passport.authenticate())
       .get(app.api.category.getTree)
 
    app.route('/categories/:id')
-      .get(app.api.category.getById)
-      .put(app.api.category.save)
-      .delete(app.api.category.remove)
+      .all(app.config.passport.authenticate())
+      .get(admin(app.api.category.getById))
+      .put(admin(app.api.category.save))
+      .delete(admin(app.api.category.remove))
 
    //rotas para ARTICLES
    app.route('/articles')
+      .all(app.config.passport.authenticate())
       .get(app.api.article.get)
-      .post(app.api.article.save)
+      .post(admin(app.api.article.save))
      
    app.route('/articles/:id')
+      .all(app.config.passport.authenticate())
       .get(app.api.article.getById)
-      .put(app.api.article.save)
-      .delete(app.api.article.remove)
+      .put(admin(app.api.article.save))
+      .delete(admin(app.api.article.remove))
 
    app.route('/categories/:id/articles')
+      .all(app.config.passport.authenticate())
       .get(app.api.article.getByCategoryId)
       
    
