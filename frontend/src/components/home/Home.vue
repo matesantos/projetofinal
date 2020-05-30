@@ -1,0 +1,47 @@
+<template>
+    <div class="home">
+        <PageTitle icon="fa fa-home" main="Dashboard" sub="Base de Conhecimento" />
+        <div class="stats">
+            <!-- :value='stat.article' stat.categories 'stat.users'  -->
+            <Stat title='Categorias' :value='8' icon="fa fa-folder" color="#d54d50"/>
+            <Stat title='Artigos' :value='8' icon="fa fa-file" color="#3bc480"/>
+            <Stat title='Usuários' :value='8' icon="fa fa-user" color="#3282cd"/>
+        </div>
+    </div>
+</template>
+
+<script>
+import PageTitle from "../templates/PageTitle";
+import Stat from './Stat'
+import axios from 'axios'
+import { urlApiUrl } from '@/global'
+
+export default {
+    name:'Home',
+    components: { PageTitle, Stat },
+    data: function(){
+        return {
+            stat:{}
+        }
+    },
+    methods:{
+        getStats(){
+            axios.get(`${urlApiUrl}/stats`).then(res => this.stat = res.data || {})
+        }
+    },
+    mounted() {
+        this.getStats()
+    }
+}
+
+</script>
+
+<style>
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap ;
+}
+
+</style>

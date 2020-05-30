@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="{'hide-menu': !isMenuVisible}">
-      <Header title="Cod3r - Projeto Final" :hideToggle="false"/>
+      <Header title="Cod3r - Projeto Final" :hideToggle="false" :hideUserDropdown="false"/>
       <Menu />
       <Footer />
       <Content />
@@ -32,8 +32,8 @@ body{
 }
 
 #app{
-    -webkit-font-smoothing: antialised;
-    -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 
     height: 100vh;
     display: grid;

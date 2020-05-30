@@ -4,17 +4,22 @@
             <i class="fa lg" :class="icon"></i>
         </a>
         <h1 class="title">
-            {{ title }}
+            <router-link to="/">{{ title }}</router-link>
         </h1>
+        <UserDropdown v-if="!hideUserDropdown"/>
     </header>
 </template>
 
 <script>
+import UserDropdown from "./UserDropdown";
+
 export default {
     name: 'Header',
+    components: { UserDropdown },
     props: {
         title: String,
-        hideToggle: Boolean
+        hideToggle: Boolean,
+        hideUserDropdown: Boolean
     },
     computed: {
         icon(){
@@ -45,9 +50,15 @@ export default {
     font-weight: 100;
     flex-grow: 1;
     text-align: center;
+    justify-self: center;
 }
 
 .title a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.title a:hover {
     color: #FFF;
     text-decoration: none;
 }
@@ -56,7 +67,7 @@ header.header > a.toogle {
     width: 60px;
     height: 100%;
     color: #FFF;
-    justify-content: flex-start;
+    justify-self: flex-start;
     text-decoration: none;
     
     display: flex;
@@ -65,6 +76,8 @@ header.header > a.toogle {
 }
 
 header.header > a.toogle:hover {
+     color: #FFF;
     background-color: rgba(0, 0, 0, 0.2);
 }
+
 </style>
