@@ -18,6 +18,9 @@ export default {
 .page-title h1 {
     margin: 0;
 }
+.page-title h1 > i{
+    margin-right: 10px;
+}
 
 .page-title h2 {
     color: #777;
