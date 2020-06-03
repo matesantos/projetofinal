@@ -1,6 +1,6 @@
 <template>
   <div class="user-admin">
-      <h1>Usuário componente</h1>
+      
       <b-form>
           <input id="userId" type="hidden" v-model="user.id">
           <b-row>
