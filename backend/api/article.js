@@ -11,7 +11,7 @@ module.exports = app => {
 
         try {
             existsOrError(article.name,'Nome não informado.')
-            lengthCorrectOrError(article.nome,'Nome muito grande')
+            lengthCorrectOrError(article.name,'Nome muito grande')
             existsOrError(article.description,'Descrição não informada.')
             existsOrError(article.categoryId,'Categoria não informada.')
             existsOrError(article.userId,'Autor não informado.')
@@ -34,7 +34,7 @@ module.exports = app => {
         }
     }
 
-    const limit = 10 // Usado para paginação. Mas tem que mudar isso depois
+    const limit = 2 // Usado para paginação. Mas tem que mudar isso depois
     const get = async (req, res) => {
         const page = req.query.page || 1
         const result = await app.db('articles').count('id').first()

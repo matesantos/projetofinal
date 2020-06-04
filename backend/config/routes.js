@@ -39,7 +39,7 @@ module.exports = app => {
    //rotas para ARTICLES
    app.route('/articles')
       .all(app.config.passport.authenticate())
-      .get(app.api.article.get)
+      .get(admin(app.api.article.get))
       .post(admin(app.api.article.save))
      
    app.route('/articles/:id')
