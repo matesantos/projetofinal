@@ -1,9 +1,9 @@
 <template>
-  <div id="app" :class="{'hide-menu': !isMenuVisible}">
-      <Header title="Cod3r - Projeto Final" :hideToggle="false" :hideUserDropdown="false"/>
-      <Menu />
-      <Footer />
+  <div id="app" :class="{'hide-menu': !isMenuVisible || !use }">
+      <Header title="Cod3r - Projeto Final" :hideToggle="!user" :hideUserDropdown="!user"/>
+      <Menu v-if="user"/>
       <Content />
+      <Footer />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ import Footer from '@/components/templates/Footer'
 export default {
     name:'App',
     components: { Header, Menu, Content, Footer },
-    computed: mapState(['isMenuVisible'])
+    computed: mapState(['isMenuVisible', 'user'])
 }
 </script>
 
@@ -45,8 +45,8 @@ body{
 }
 
 #app.hide-menu {
-    grid-template-areas:  "header header",
-                          "content content",
+    grid-template-areas:  "header header"
+                          "content content"
                           "footer footer";
 }
 </style>

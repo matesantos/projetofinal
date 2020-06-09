@@ -41,7 +41,7 @@ export default {
 
     display: flex;
     justify-content: center;       
-    align-content: center;
+    align-items: center;
 }
 
 .title {
@@ -50,7 +50,6 @@ export default {
     font-weight: 100;
     flex-grow: 1;
     text-align: center;
-    justify-self: center;
 }
 
 .title a {
