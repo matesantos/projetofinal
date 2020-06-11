@@ -32,7 +32,7 @@ module.exports = app => {
 
    app.route('/categories/:id')
       .all(app.config.passport.authenticate())
-      .get(admin(app.api.category.getById))
+      .get(app.api.category.getById)
       .put(admin(app.api.category.save))
       .delete(admin(app.api.category.remove))
 
@@ -52,7 +52,7 @@ module.exports = app => {
       .all(app.config.passport.authenticate())
       .get(app.api.article.getByCategoryId)
 
-   //rotas para o stat(estíticas)
+   //rotas para o stat(estatísticas)
    app.route('/stats')
       .all(app.config.passport.authenticate())
       .get(app.api.stat.get)

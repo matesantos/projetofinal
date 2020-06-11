@@ -3,11 +3,11 @@ module.exports = app => {
         users: Number,
         categories: Number,
         articles: Number,
-        createAt: Date
+        createdAt: Date
     })
 
     const get = async (req, res) => {
-        Stat.findOne({}, {}, { sort: { createAt: -1 } })
+        Stat.findOne({}, {}, { sort: { 'createdAt': -1 } })
             .then(stat => {
                 defaultStat = {
                     users: 0,

@@ -1,11 +1,13 @@
 <template>
    <div class="article-by-id">
        <PageTitle icon="fa fa-folder-o" :main="article.name" :sub="article.description"/>
-       <div class="article-content" v-html="article.content"></div>
+          <div class="article-content" v-html="article.content"></div>
    </div>
 </template>
 
 <script>
+import 'highlight.js/styles/dracula.css'
+import hljs from 'highlight.js'
 import axios from 'axios'
 import { baseApiUrl, showError } from '@/global'
 import PageTitle from '../templates/PageTitle'
@@ -21,8 +23,13 @@ export default {
   mounted(){
     const url = `${baseApiUrl}/articles/${this.$route.params.id}`
     axios.get(url).then(res => this.article = res.data )
-              .catch(showError)
-    }
+                  .catch(showError)
+  },
+  updated() {
+    document.querySelectorAll('.article-content pre.ql-syntax').forEach(e => {
+        hljs.highlightBlock(e)
+    })
+  }
 }
 </script>
 

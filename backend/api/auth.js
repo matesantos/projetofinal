@@ -29,6 +29,8 @@ module.exports = app => {
             iat: dataNow,
             //O token tem um prazo de validade de 3 dias
             exp: dataNow + (60 * 60 * 24 * 3)
+            //só para testes. 10s a validade do token
+            //exp: dataNow + 5
         }
 
         res.status(200).send({
@@ -43,6 +45,23 @@ module.exports = app => {
             if(userData){
                 const token = jwt.decode(userData.token, authSecret)
                 if(new Date(token.exp * 1000) > new Date()){
+                    return res.status(200).send(true)
+                }
+            }
+        } catch (error) {
+            //ignorar o error
+            //problema com o token
+        }
+        res.send(false)
+    }
+    
+    //melhorar depois 
+    const validateAdmin = async (req,res) => {
+        const userData = req.body || null
+        try {
+            if(userData){
+                const token = jwt.decode(userData.token, authSecret)
+                if(token.admin){
                     return res.status(200).send(true)
                 }
             }
